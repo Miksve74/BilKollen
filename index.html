@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d2635">
+  <meta name="description" content="BilKollen – fotografera en svensk registreringsskylt och hitta fordonsuppgifter med några tryck. Gratis och utan konto.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="BilKollen">
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%0A%3Crect%20width%3D%22512%22%20height%3D%22512%22%20rx%3D%22112%22%20fill%3D%22%230d2635%22/%3E%0A%3Crect%20x%3D%2262%22%20y%3D%22150%22%20width%3D%22388%22%20height%3D%22222%22%20rx%3D%2238%22%20fill%3D%22%2319a98b%22/%3E%0A%3Cpath%20d%3D%22M110%20228%20141%20158c7-15%2017-20%2035-20h160c18%200%2028%205%2035%2020l31%2070%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%0A%3Cpath%20d%3D%22M110%20258h292%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2221%22%20stroke-linecap%3D%22round%22/%3E%0A%3Ccircle%20cx%3D%22158%22%20cy%3D%22317%22%20r%3D%2223%22%20fill%3D%22%23fff%22/%3E%3Ccircle%20cx%3D%22354%22%20cy%3D%22317%22%20r%3D%2223%22%20fill%3D%22%23fff%22/%3E%0A%3Cpath%20d%3D%22M150%20375v25M362%20375v25%22%20stroke%3D%22%2319a98b%22%20stroke-width%3D%2228%22%20stroke-linecap%3D%22round%22/%3E%0A%3C/svg%3E%0A">
+  <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFe0lEQVR4nO3czXXcNhSGYY5OlnIKcAF2BU4pqiRbr7R1JSolqsAqIAVELiAL+tBjzpAE8F0Q9wLvs8zJkQbAy8v5sy7TiT58+nLmrxvZ+9vrOb/oUvWnU4wT9XqqEhDduGVeknFApBOCYUZmAZFOOCYZGQREOqGJGUkBkU43ijN6KP6V1NOT4tMsmUCk07HcUZQ9gainb7nnmxcQ9Ywg65QzAqKecaSfdWpA1DOaxBNPCoh6xpRy7scBUc/IDk//ICDqwX4DewFRD2Y7JWwGRD24ttVD+UcZwLQVEOMHt+5WcScg6sGW2za4hUGyDojxg32rQphAkPwWEOMHKa47YQJB8isgxg/SLbUwgSD5GRDjB7nmZphAkBAQJJeJ+xcETCBICAgSAoKEgCB54Bk0FEwgSAgIEgKChIAgISBICAgSAoKEgCAhIEgICJI/Wj8A1X/f/2n9ECR/fv6r9UOQMIEai34BXOJ+mBp961eCjqKoE6izeqawK4o3gYJudLpYoyhSQN2nswjUUIyAxknnWoiMAgQ0Zj0L5xm5DmjwdBaeGzopoMfnp/T/+d+nv7N++MeXb5kPx4usleYu88fXl8yHU6JuQFndzMapZ1E1o6lySRU/yiioJ0sH6czmheReOeken5/qNVRlAhWnk7iJ3aSzUnv5NTKyn0BVB0+v6cwijiLjjzKUeg43ru96FofLVAozv7yjfhYGJywDYvxYCTSEzAKq/ZoLhgwPK8YtbKjxM4uyZBcB1Xvd0TEnm2YTEC/da6i6cKsjaz+BnFxJEXnYuvYBITTvAQ17/5r5X37jgDwM4dCab6DrCeT/+juB801oGVDzq6cPbbfR7wRyfuWdyfNWNAuI8WOo4Wb6nUAIwWlAnod2E243pE1A3L/MtdpSjxPI7dXWls9taRAQ46eSJhvrcQIhkLMD4quriqpfdS3DBILk7IA+vnzbuYwYP4f2d+/8DWzzV1pr/wu60TS88FrewlZXDOMn0WrT2u5b+78TzTQq4+R68/Ik2sl2ROFnu7wEhKAICBICgoSAIGn5KoxXXlYGfR8IHSAgSAgIEgKChIAgISBIWr6M9/OBDooxgSAhIEgICBICgoSAICEgSAgIEgKChIAgaf/PehLdfvuspzey464uQEBbX1yc/3uUjd4SfXXeb2GHX3sN/b3YDlbnOqDE7fO/y3f1sTq/AWVtnPNdvtXN6vwGhBCcBlRwzXm+TFd6Wp3TgBAFAUFCQJAQECQEBInTgArewvf/rv+ip9U5DQhR+A0o65pze4Fu6WZ1fgOakjfO8/7u6GN1rgOaErbP+f7u62B1Ab4PtPWHpP1vboroqwsQ0CzKhpaJuzqbW9iPry8mPwensToy78+B4BwBQWIWEHexQAwPy3IC0VAItsfELQwS44AYQs6ZH5D9BKIht2oczeXDpy/mP3T2+PxU6ScjV72ruuJzIEaRE1UPouIEusY0Ot85F/BJAZXZz66zCRd0sbyMh4SAICEgSAgIEgKChIAgISBICAgSAoKEgCBx/VEG/GMCQUJAkBAQJAQECQFB8vD+9tr6MSAwJhAkBAQJAUFCQJA8TNPE82iUeX97ZQJBQkCQ/AyIuxhyzc0wgSD5FRBDCOmWWphAkPwWEEMIKa47YQJBsg6IIYR9q0KYQJDcCYghhC23bdyfQDSEW3er4BYGyWZADCFc2+phbwLREGY7JRzcwmgI+w0cPweioZEdnn7Sk2gaGlPKuae+CqOh0SSeeMbLeBoaR/pZ570PREMjyDrl7DcSaahvued7Kf5N/GmzzpSNhvKPMhhFPSk+zfIJtGAUhSYOAoOAZmQUjsk9xCygGRmFYPj0wzigGRm5Zf7MtUpAC0pyot4rnv8BCGyz79ihziwAAAAASUVORK5CYII=">
+  <style>
+:root { --navy:#0d2635; --text:#142736; --muted:#657783; --mint:#19a98b; --pale:#eaf8f3; --border:#e0e8e8; --surface:#fff; --page:#f4f7f7; --red:#bf433f; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, system-ui, sans-serif; color:var(--text); background:var(--page); font-synthesis:none; }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
+body {margin:0;min-height:100vh;overflow-x:hidden;}
+button,input,a {font:inherit;}
+button {cursor:pointer;-webkit-tap-highlight-color:transparent;}
+button:focus-visible, a:focus-visible, input:focus-visible { outline:3px solid #2dbda3; outline-offset:3px; }
+a {color:inherit;}
+[hidden] {display:none !important;}
+.background-orb {position:absolute;z-index:-1;pointer-events:none;border-radius:50%;filter:blur(65px);opacity:.5;}
+.orb-one {background:#b3e5d4;width:340px;height:340px;right:-140px;top:60px;}
+.orb-two {background:#d6e5f1;width:340px;height:340px;left:-190px;top:420px;}
+.shell {width:min(100% - 32px, 780px);margin:0 auto;}
+.site-header {display:flex;justify-content:space-between;align-items:center;padding:29px 0 12px;gap:12px;}
+.brand {display:inline-flex;align-items:center;gap:11px;text-decoration:none;font-size:22px;font-weight:850;letter-spacing:-.9px;color:var(--navy);}
+.brand-accent {color:#109d83;}
+.brand-icon {display:grid;place-items:center;background:var(--navy);color:white;width:40px;height:40px;border-radius:13px;box-shadow:0 6px 16px #132d3d25;}
+.brand-icon svg {width:28px;height:28px;}
+.header-pill {white-space:nowrap;border-radius:100px;background:#e5f5ef;color:#217c69;padding:9px 11px;font-size:10px;letter-spacing:.6px;font-weight:800;}
+.pulse-dot {display:inline-block;width:7px;height:7px;border-radius:50%;background:#1ba987;margin-right:5px;vertical-align:middle;}
+.intro {padding:40px 2px 22px;}
+.eyebrow {color:#138e79;font-weight:850;letter-spacing:1.8px;font-size:10px;}
+h1 {font-size:clamp(36px,8vw,56px);line-height:1.09;letter-spacing:-2.5px;margin:13px 0 14px;color:var(--navy);font-weight:860;}
+h1 span {color:#11977f;}
+.intro p {max-width:560px;color:#64737c;line-height:1.65;font-size:15px;margin:0 0 7px;}
+.card {background:#fff;border:1px solid #e2e9e7;border-radius:23px;padding:25px;box-shadow:0 16px 48px #1534400b;}
+.card + .card {margin-top:18px;}
+.card-heading {display:flex;gap:12px;align-items:center;margin-bottom:22px;}
+.card-heading h2 {font-size:17px;letter-spacing:-.4px;margin:0;color:var(--navy);}
+.step-label {display:grid;place-items:center;width:31px;height:31px;border-radius:10px;background:#e6f6f1;color:#168a75;font-size:12px;font-weight:800;}
+.scanner-actions {display:grid;gap:10px;}
+.camera-button {display:flex;width:100%;align-items:center;gap:15px;min-height:106px;text-align:left;border:1px solid #1a9b83;border-radius:17px;background:linear-gradient(105deg,#0e816f,#0a9e83);color:white;padding:20px;box-shadow:0 8px 17px #078b6f2a;}
+.camera-button:hover {filter:brightness(1.05);}
+.camera-icon {display:grid;place-items:center;width:56px;height:56px;border-radius:15px;background:#ffffff28;flex-shrink:0;}
+.camera-icon svg {width:32px;height:32px;}
+.camera-button strong {display:block;font-size:17px;letter-spacing:-.35px;}
+.camera-button small {display:block;color:#d2f3e9;margin-top:4px;font-size:13px;}
+.action-arrow {margin-left:auto;font-size:22px;color:#c8f2e7;}
+.upload-button {background:#f1f6f5;border:1px solid #e6eded;border-radius:13px;padding:12px;color:#355d5a;font-size:13px;font-weight:700;}
+.upload-button span {font-size:18px;vertical-align:-1px;margin-right:6px;}
+.separator {display:flex;gap:15px;align-items:center;margin:24px 0 20px;color:#849098;font-weight:800;font-size:10px;letter-spacing:1px;text-align:center;}
+.separator::before,.separator::after {content:'';height:1px;flex:1;background:#e3e9e8;}
+.field-label {display:block;font-weight:750;font-size:13px;margin:0 0 10px;}
+.plate-field {display:flex;min-height:78px;border:2px solid #d7e1e3;border-radius:13px;overflow:hidden;align-items:stretch;background:#fff;transition:border-color .15s;}
+.plate-field:focus-within {border-color:#18a38a;box-shadow:0 0 0 3px #18a38a20;}
+.plate-flag {width:51px;display:flex;flex-direction:column;align-items:center;justify-content:space-around;background:#2055ac;color:white;font-weight:800;padding:8px 0 7px;}
+.eu-stars {font-size:12px;color:#f7d44b;letter-spacing:2px;line-height:.6;}
+.plate-flag>span:last-child {font-size:16px;}
+.plate-field input {width:100%;min-width:0;border:0;background:transparent;outline:0 !important;box-shadow:none !important;padding:10px 15px;font-size:clamp(27px,8vw,38px);line-height:1;letter-spacing:3px;font-weight:840;color:var(--navy);text-transform:uppercase;}
+.plate-field input::placeholder {color:#c8d0d2;opacity:1;}
+.clear-button {border:0;background:transparent;color:#98a8a9;padding:0 16px;font-size:31px;}
+.field-hint {font-size:12px;color:#829098;margin:9px 0 0;}
+.field-error {margin-top:10px;color:var(--red);font-size:13px;font-weight:650;}
+.primary-button {background:var(--navy);border:0;color:white;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:13px;min-height:51px;padding:12px 17px;font-weight:800;width:100%;font-size:14px;}
+.primary-button:hover:not(:disabled) {background:#17445b;}
+.primary-button:disabled {opacity:.43;cursor:not-allowed;}
+.next-button {margin-top:22px;}
+.next-button span:last-child {margin-left:3px;font-size:19px;}
+.photo-panel {margin-top:18px;border:1px solid #e2ebe7;padding:14px;border-radius:16px;background:#fafdfb;}
+.photo-title-row {display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;}
+.text-button {background:none;border:0;color:#158d74;font-size:12px;font-weight:800;padding:8px;}
+.help-text {color:#677b77;font-size:12px;line-height:1.5;margin:5px 0 12px;}
+.photo-stage {position:relative;width:100%;margin-bottom:13px;line-height:0;overflow:hidden;touch-action:none;background:#d2ddd9;border-radius:10px;}
+.photo-stage canvas {display:block;width:100%;height:auto;}
+.crop-box {position:absolute;left:16%;top:37%;width:68%;height:26%;border:2px solid #3df3b5;box-shadow:0 0 0 2000px #0d263542,inset 0 0 0 1px #003a2c;cursor:grab;touch-action:none;border-radius:5px;}
+.crop-box:active {cursor:grabbing;}
+.crop-label {position:absolute;left:-2px;bottom:100%;color:#002c27;background:#3df3b5;font-size:8px;letter-spacing:.7px;font-weight:800;line-height:1.6;padding:2px 7px;border-radius:4px 4px 0 0;}
+.resize-handle {position:absolute;width:27px;height:27px;right:-9px;bottom:-9px;border:3px solid #fff;border-radius:50%;background:#0ea987;box-shadow:0 0 0 1px #0b805d;cursor:nwse-resize;}
+.ocr-status {margin-top:10px;color:#426c64;font-size:12px;line-height:1.5;}
+.results-card {border-color:#cfe6df;}
+.reg-summary {background:#edf8f4;border:1px solid #cfece2;display:flex;align-items:center;justify-content:space-between;gap:10px;border-radius:16px;padding:18px 16px;}
+.summary-label {font-size:10px;font-weight:800;color:#49927f;letter-spacing:1px;}
+.summary-number {font-size:32px;font-weight:900;color:var(--navy);letter-spacing:1.8px;margin-top:5px;}
+.copy-button {background:white;border:1px solid #cde4da;border-radius:10px;color:#1d735f;font-weight:800;font-size:12px;padding:11px 12px;white-space:nowrap;}
+.result-intro {font-size:13px;line-height:1.6;color:#657783;margin:17px 2px;}
+.service-list {display:grid;gap:10px;}
+.service {display:flex;text-decoration:none;gap:13px;align-items:center;border:1px solid #e6edeb;border-radius:13px;padding:13px;transition:background .15s,transform .15s;}
+.service:hover {background:#f7fbfa;transform:translateY(-1px);}
+.service-icon {width:47px;height:47px;flex:0 0 47px;display:grid;place-items:center;border-radius:13px;}
+.service-icon svg {width:25px;height:25px;}
+.service-icon.sea {background:#e6f7f2;color:#1a9179;}.service-icon.amber {background:#fff4e2;color:#d98d1c;}.service-icon.lilac {background:#efedfc;color:#736cc3;}.service-icon.coral {background:#fff0ea;color:#dc8569;}
+.service-info {display:block;min-width:0;flex:1;}.service-info strong {display:block;font-size:13px;color:#26343d;}.service-info small {display:block;font-size:11px;color:#89979b;margin-top:4px;line-height:1.35;}.service-arrow {color:#a9b7b6;font-size:22px;}
+.tip {display:flex;gap:10px;margin-top:18px;background:#f3f7f7;border-radius:12px;padding:13px 14px;color:#77858d;font-size:11px;line-height:1.55;}.tip span {font-size:18px;color:#40766a;line-height:1.1;}.tip p {margin:0;}
+.how-it-works {padding:43px 3px 16px;}.how-it-works h2 {font-size:18px;letter-spacing:-.5px;margin:0 0 17px;}.steps-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}.steps-grid>div {padding:14px;background:#fff9;border:1px solid #e8eded;border-radius:14px;}.step-icon {font-size:23px;display:block;margin-bottom:9px;}.steps-grid strong {font-size:13px;}.steps-grid p {color:#839099;font-size:11px;line-height:1.6;margin:6px 0 0;}
+footer {border-top:1px solid #e0e9e6;margin-top:25px;padding:22px 0 40px;color:#88949b;text-align:center;font-size:11px;line-height:1.9;}
+footer strong {color:#2b675c;}
+.toast {position:fixed;bottom:calc(23px + env(safe-area-inset-bottom));left:50%;z-index:100;transform:translate(-50%,20px);background:#183d42;color:white;border-radius:13px;padding:13px 18px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;max-width:min(92vw,420px);text-align:center;box-shadow:0 12px 35px #0e29303f;}
+.toast.visible {opacity:1;transform:translate(-50%,0);}
+@media(min-width:760px){.intro{padding:55px 2px 30px;}.card{padding:32px;}.scanner-actions{grid-template-columns:1.6fr .9fr;align-items:stretch;}.upload-button{font-size:14px;}.steps-grid>div{padding:18px;}}
+@media(max-width:430px){.shell{width:calc(100% - 28px);}.site-header{padding-top:18px;}.brand{font-size:20px;}.brand-icon{width:37px;height:37px;}.header-pill{font-size:8px;padding:8px 9px;}.intro{padding:27px 3px 22px;}h1{letter-spacing:-1.75px;}.intro p{font-size:13px;}.card{padding:19px 16px;border-radius:19px;}.step-label{width:28px;height:28px;}.card-heading h2{font-size:15px;}.camera-button{min-height:92px;padding:15px;}.camera-icon{width:50px;height:50px;}.camera-button strong{font-size:16px;}.steps-grid{gap:7px;}.steps-grid>div{padding:10px;}.steps-grid strong{font-size:12px;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important;}}
+
+</style>
+  <title>BilKollen – smart fordonskoll</title>
+  
+</head>
+<body>
+  <div class="background-orb orb-one" aria-hidden="true"></div>
+  <div class="background-orb orb-two" aria-hidden="true"></div>
+  <div class="shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="BilKollen, startsida">
+        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M7 18 10 10c.4-1 1.2-1.5 2.3-1.5h7.4c1.1 0 1.9.5 2.3 1.5l3 8M6 18h20v7H6zM9 25v2m14-2v2M6 14h20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10.5" cy="21.5" r="1.1" fill="currentColor"/><circle cx="21.5" cy="21.5" r="1.1" fill="currentColor"/></svg></span>
+        <span>Bil<span class="brand-accent">Kollen</span></span>
+      </a>
+      <span class="header-pill"><span class="pulse-dot"></span> GRATIS · INGEN INLOGGNING</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="eyebrow">DIN BIL. ALL INFORMATION. ENKLARE.</div>
+        <h1 id="intro-title">Ta en bild.<br><span>Få koll på bilen.</span></h1>
+        <p>Fota registreringsskylten eller skriv numret själv. Vi hjälper dig vidare till fordonsdata, miltal, värdering och ägare.</p>
+      </section>
+
+      <section class="card scanner-card" aria-labelledby="scan-heading">
+        <div class="card-heading"><span class="step-label">01</span><h2 id="scan-heading">Hitta registreringsnumret</h2></div>
+        <div class="scanner-actions">
+          <button type="button" class="camera-button" id="cameraBtn">
+            <span class="camera-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7.5h4l1.7-2h6.6l1.7 2h4v11H3v-11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12.8" r="3.5" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <span><strong>Fotografera skylten</strong><small>Öppna kameran</small></span>
+            <span class="action-arrow" aria-hidden="true">↗</span>
+          </button>
+          <button type="button" class="upload-button" id="uploadBtn">
+            <span aria-hidden="true">▧</span> Välj befintlig bild
+          </button>
+          <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+          <input type="file" id="uploadInput" accept="image/*" hidden>
+        </div>
+
+        <div id="photoPanel" class="photo-panel" hidden>
+          <div class="photo-title-row"><strong>Justera utsnittet</strong><button id="removePhoto" type="button" class="text-button">Ta bort bild</button></div>
+          <p class="help-text">Flytta den gröna rutan över registreringsskylten. Dra i hörnet om den behöver göras större.</p>
+          <div class="photo-stage" id="photoStage">
+            <canvas id="previewCanvas" aria-label="Vald bild med justerbar beskärningsruta"></canvas>
+            <div id="cropBox" class="crop-box" role="group" aria-label="Flyttbar ruta för registreringsskylten">
+              <span class="crop-label">REGISTRERINGSSKYLT</span>
+              <span id="resizeHandle" class="resize-handle" aria-hidden="true"></span>
+            </div>
+          </div>
+          <button type="button" class="primary-button" id="readBtn"><span aria-hidden="true">✦</span> Läs av registreringsnumret</button>
+          <div id="ocrStatus" class="ocr-status" role="status" aria-live="polite" hidden></div>
+        </div>
+
+        <div class="separator"><span>ELLER SKRIV NUMRET SJÄLV</span></div>
+        <label class="field-label" for="regInput">Registreringsnummer</label>
+        <div class="plate-field" id="plateField">
+          <div class="plate-flag" aria-hidden="true"><span class="eu-stars">✶<br>✶</span><span>S</span></div>
+          <input id="regInput" name="reg" type="text" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" maxlength="8" placeholder="ABC 123" aria-describedby="regHelp">
+          <button type="button" class="clear-button" id="clearBtn" aria-label="Rensa registreringsnummer" title="Rensa" hidden>×</button>
+        </div>
+        <p id="regHelp" class="field-hint">Svenskt regnummer, sex tecken. Kontrollera alltid att OCR läste rätt.</p>
+        <div id="regError" class="field-error" role="alert" hidden></div>
+        <button class="primary-button next-button" type="button" id="continueBtn" disabled>Visa sökalternativ <span aria-hidden="true">→</span></button>
+      </section>
+
+      <section class="card results-card" id="results" aria-labelledby="results-heading" hidden>
+        <div class="card-heading"><span class="step-label">02</span><h2 id="results-heading">Välj vad du vill veta</h2></div>
+        <div class="reg-summary">
+          <div><div class="summary-label">REGISTRERINGSNUMMER</div><div class="summary-number" id="regSummary">ABC 123</div></div>
+          <button class="copy-button" type="button" id="copyBtn"><span aria-hidden="true">▢</span> Kopiera</button>
+        </div>
+        <p class="result-intro">Kopiera numret och öppna sedan önskad tjänst. Uppgifterna visas på respektive webbplats.</p>
+        <div class="service-list">
+          <a class="service" href="https://biluppgifter.se/fordon/" target="_blank" rel="noopener noreferrer" data-service="biluppgifter">
+            <span class="service-icon sea"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 17V9l4-3h8l4 3v8H4ZM7 13h10M7 17v2m10-2v2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="service-info"><strong>Bilmodell & årsmodell</strong><small>Biluppgifter.se · tekniska data och historik</small></span><span class="service-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="service" href="https://www.car.info/sv-se/sok-bilregister" target="_blank" rel="noopener noreferrer" data-service="carinfo">
+            <span class="service-icon amber"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m4 17 4-4 4 2 6-8M18 7h-5m5 0v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="service-info"><strong>Miltal & bilvärdering</strong><small>Car.info · historik och uppskattat värde</small></span><span class="service-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="service" href="https://fordon-fu-regnr.transportstyrelsen.se/" target="_blank" rel="noopener noreferrer" data-service="transport">
+            <span class="service-icon lilac"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h10v16H7zM10 8h4m-4 4h4m-4 4h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="service-info"><strong>Officiella fordonsuppgifter</strong><small>Transportstyrelsen · besiktning och skatt</small></span><span class="service-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="service" href="sms:71640" id="smsLink">
+            <span class="service-icon coral"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5ZM8 9h8m-8 3h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="service-info"><strong>Vem äger bilen?</strong><small>SMS till 71640 · klistra in numret och skicka</small></span><span class="service-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="tip"><span aria-hidden="true">ⓘ</span><p>För ägaruppgifter: skicka endast registreringsnumret, utan mellanslag, till <strong>71640</strong>. Transportstyrelsens tjänst är gratis, men operatörsavgift kan tillkomma.</p></div>
+      </section>
+
+      <section class="how-it-works" aria-labelledby="how-title">
+        <h2 id="how-title">Tre enkla steg</h2>
+        <div class="steps-grid">
+          <div><span class="step-icon">📷</span><strong>1. Fota</strong><p>Ta en bild eller välj från bilder.</p></div>
+          <div><span class="step-icon">🔎</span><strong>2. Kontrollera</strong><p>Läs av skylten och rätta numret vid behov.</p></div>
+          <div><span class="step-icon">🚘</span><strong>3. Slå upp</strong><p>Öppna gratistjänster med ett tryck.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer><strong>BilKollen</strong> · Ingen scraping, inget konto och ingen bildlagring.<br>Oberoende tjänst. Inte ansluten till Transportstyrelsen, Car.info eller Biluppgifter.se.</footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+
+// BilKollen 1.0 – no vehicle data collection, no scraping, no backend.
+// OCR runs in the browser with Tesseract.js (fetched on first use).
+const $ = (id) => document.getElementById(id);
+const cameraInput = $('cameraInput');
+const uploadInput = $('uploadInput');
+const regInput = $('regInput');
+const cropBox = $('cropBox');
+const photoStage = $('photoStage');
+const preview = $('previewCanvas');
+const statusElement = $('ocrStatus');
+let sourceImage = null;
+let crop = {x:0.16,y:0.36,w:0.68,h:0.28};
+let pointerDrag = null;
+let processing = false;
+let toastTimer = null;
+
+const PLATE_REGEX = /^[A-HJ-PR-UW-Z]{3}\d{2}[A-HJ-PR-UW-Z0-9]$/;
+const normalizePlate = (v) => String(v ?? '').toUpperCase().replace(/[^A-Z0-9]/g,'');
+const formatPlate = (v) => v.length > 3 ? `${v.slice(0,3)} ${v.slice(3)}` : v;
+const clamp = (n,min,max) => Math.min(Math.max(n,min),max);
+
+function notify(message) {
+  const toast = $('toast'); toast.textContent = message; toast.classList.add('visible');
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('visible'), 3500);
+}
+function updateReg(raw, showError=false) {
+  const value = normalizePlate(raw);
+  regInput.value = formatPlate(value);
+  const valid = PLATE_REGEX.test(value);
+  $('continueBtn').disabled = !valid;
+  $('clearBtn').hidden = !value.length;
+  if (showError && value && !valid) {
+    $('regError').textContent = 'Kontrollera numret: tre bokstäver, två siffror och en siffra eller bokstav.';
+    $('regError').hidden = false;
+  } else $('regError').hidden = true;
+  if (!$('results').hidden && value !== $('results').dataset.reg) $('results').hidden = true;
+  return value;
+}
+regInput.addEventListener('input',() => updateReg(regInput.value,false));
+regInput.addEventListener('blur',() => updateReg(regInput.value,true));
+$('clearBtn').addEventListener('click',()=> {updateReg('');regInput.focus();$('results').hidden=true;});
+$('continueBtn').addEventListener('click',()=> {
+  const value = updateReg(regInput.value,true);
+  if (!PLATE_REGEX.test(value)) { notify('Kontrollera registreringsnumret.'); return; }
+  $('regSummary').textContent = formatPlate(value);
+  $('results').dataset.reg = value;
+  $('results').hidden = false;
+  $('results').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+async function copyRegistration() {
+  const value = $('results').dataset.reg || normalizePlate(regInput.value);
+  if (!value) { notify('Ange ett registreringsnummer först.'); return false; }
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(value);
+    } else {
+      const temp = document.createElement('textarea');
+      temp.value=value;temp.style.position='fixed';temp.style.opacity='0';
+      document.body.appendChild(temp);temp.select();
+      const ok=document.execCommand('copy');temp.remove();if(!ok)throw new Error('Copy failed');
+    }
+    notify(`${value} kopierat – klistra in på nästa sida.`);
+    return true;
+  } catch(e) {
+    notify('Kopieringen blockerades. Markera och kopiera registreringsnumret manuellt.');
+    return false;
+  }
+}
+$('copyBtn').addEventListener('click',copyRegistration);
+// Service links intentionally use confirmed landing pages: undocumented deep links are unreliable.
+document.querySelectorAll('[data-service]').forEach(link=>link.addEventListener('click',()=>{
+  // Do not stop navigation or depend on asynchronous clipboard permissions.
+  notify('Kopiera gärna registreringsnumret först och klistra in på sidan som öppnas.');
+}));
+$('smsLink').addEventListener('click',()=>{
+  notify('Klistra in registreringsnumret utan mellanslag och skicka SMS till 71640.');
+});
+$('cameraBtn').addEventListener('click',()=>cameraInput.click());
+$('uploadBtn').addEventListener('click',()=>uploadInput.click());
+cameraInput.addEventListener('change',e=>loadPhoto(e.target.files?.[0]));
+uploadInput.addEventListener('change',e=>loadPhoto(e.target.files?.[0]));
+$('removePhoto').addEventListener('click',()=> {
+  sourceImage = null; $('photoPanel').hidden=true;cameraInput.value='';uploadInput.value='';
+  statusElement.hidden=true;
+});
+
+async function loadPhoto(file) {
+  if (!file) return;
+  if (!file.type.startsWith('image/')) {notify('Välj en bildfil.');return;}
+  if (file.size > 25 * 1024 * 1024) {notify('Bilden är för stor (max 25 MB).');return;}
+  const url=URL.createObjectURL(file);
+  try {
+    const img = new Image();
+    await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=reject;img.src=url;});
+    sourceImage=img;
+    const w=img.naturalWidth,h=img.naturalHeight;
+    if (!w||!h) throw Error('Tom bild');
+    const factor=Math.min(1, 1000/w, 630/h);
+    preview.width=Math.round(w*factor);preview.height=Math.round(h*factor);
+    const ctx=preview.getContext('2d');ctx.drawImage(img,0,0,preview.width,preview.height);
+    crop={x:.15,y:.35,w:.70,h:.30};
+    renderCrop();$('photoPanel').hidden=false;statusElement.hidden=true;
+    $('photoPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+  } catch(e) {notify('Kunde inte läsa bilden. Prova en annan bild.');}
+  finally {URL.revokeObjectURL(url);}
+}
+function renderCrop() {
+  cropBox.style.left=`${crop.x*100}%`;cropBox.style.top=`${crop.y*100}%`;
+  cropBox.style.width=`${crop.w*100}%`;cropBox.style.height=`${crop.h*100}%`;
+}
+// A draggable and resizable crop zone makes recognition possible even if the plate is small.
+cropBox.addEventListener('pointerdown',e=>{
+  if(!sourceImage)return;
+  e.preventDefault();
+  const rect=photoStage.getBoundingClientRect();
+  pointerDrag={startX:e.clientX,startY:e.clientY,initial:{...crop},mode:e.target.closest('#resizeHandle')?'resize':'move',width:rect.width,height:rect.height};
+  cropBox.setPointerCapture(e.pointerId);
+});
+cropBox.addEventListener('pointermove',e=>{
+  if(!pointerDrag)return;
+  const dx=(e.clientX-pointerDrag.startX)/pointerDrag.width;
+  const dy=(e.clientY-pointerDrag.startY)/pointerDrag.height;
+  const initial=pointerDrag.initial;
+  if(pointerDrag.mode==='resize') {
+    crop.w=clamp(initial.w+dx,.15,1-initial.x);
+    crop.h=clamp(initial.h+dy,.10,1-initial.y);
+  }else {
+    crop.x=clamp(initial.x+dx,0,1-initial.w);
+    crop.y=clamp(initial.y+dy,0,1-initial.h);
+  }
+  renderCrop();
+});
+for (const ev of ['pointerup','pointercancel','lostpointercapture']) cropBox.addEventListener(ev,()=>{pointerDrag=null;});
+
+function cropImage() {
+  const img=sourceImage;
+  const sx=Math.round(crop.x*img.naturalWidth),sy=Math.round(crop.y*img.naturalHeight);
+  const sw=Math.max(1,Math.round(crop.w*img.naturalWidth)),sh=Math.max(1,Math.round(crop.h*img.naturalHeight));
+  const w=Math.round(clamp(sw,900,2200)), h=Math.max(1,Math.round(w*sh/sw));
+  const cnv=document.createElement('canvas');cnv.width=w;cnv.height=h;
+  const ctx=cnv.getContext('2d',{willReadFrequently:true});
+  ctx.fillStyle='white';ctx.fillRect(0,0,w,h);
+  ctx.drawImage(img,sx,sy,Math.min(sw,img.naturalWidth-sx),Math.min(sh,img.naturalHeight-sy),0,0,w,h);
+  return cnv;
+}
+function enhanceImage(canvas) {
+  const ctx=canvas.getContext('2d',{willReadFrequently:true});
+  const im=ctx.getImageData(0,0,canvas.width,canvas.height);
+  const a=im.data;
+  let sum=0;
+  for(let i=0;i<a.length;i+=4)sum+=(a[i]*.299+a[i+1]*.587+a[i+2]*.114);
+  const mean=sum/(a.length/4);
+  for(let i=0;i<a.length;i+=4){
+    const light=a[i]*.299+a[i+1]*.587+a[i+2]*.114;
+    const value=clamp(Math.round((light-mean)*1.7+139),0,255);
+    a[i]=a[i+1]=a[i+2]=value;
+  }
+  ctx.putImageData(im,0,0);
+  return canvas;
+}
+function cleanCandidate(six) {
+  const letters={'0':'O','1':'L','2':'Z','5':'S','6':'G','8':'B','I':'L','Q':'O'};
+  const digits={'O':'0','Q':'0','D':'0','I':'1','L':'1','Z':'2','S':'5','G':'6','B':'8'};
+  const c=six.split('');
+  for(let i=0;i<3;i++)c[i]=letters[c[i]]||c[i];
+  for(let i=3;i<5;i++)c[i]=digits[c[i]]||c[i];
+  if(c[5]==='I')c[5]='1';
+  if(c[5]==='Q')c[5]='0';
+  return c.join('');
+}
+function extractPlate(text) {
+  const lines=String(text||'').toUpperCase().split(/\n/);
+  let candidates=[];
+  for(const line of [...lines,lines.join('')]){
+    const compact=line.replace(/[^A-Z0-9]/g,'');
+    for(let i=0;i<=compact.length-6;i++){
+      const snippet=compact.slice(i,i+6), candidate=cleanCandidate(snippet);
+      if(PLATE_REGEX.test(candidate)) candidates.push(candidate);
+    }
+  }
+  return candidates[0]||null;
+}
+let ocrScriptPromise=null;
+function loadTesseract(){
+  if(window.Tesseract) return Promise.resolve();
+  if(ocrScriptPromise) return ocrScriptPromise;
+  ocrScriptPromise=new Promise((resolve,reject)=>{
+    const script=document.createElement('script');
+    script.src='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
+    script.onload=()=>window.Tesseract?resolve():reject(Error('OCR-bibliotek saknas'));
+    script.onerror=()=>reject(Error('OCR kunde inte laddas'));
+    document.head.appendChild(script);
+  }).catch(e=>{ocrScriptPromise=null;throw e;});
+  return ocrScriptPromise;
+}
+function setOCRStatus(message){statusElement.textContent=message;statusElement.hidden=false;}
+$('readBtn').addEventListener('click',async()=>{
+  if(processing||!sourceImage)return;
+  processing=true;const btn=$('readBtn');btn.disabled=true;
+  try {
+    setOCRStatus('Laddar bildavläsningen första gången …');
+    await loadTesseract();
+    setOCRStatus('Läser registreringsskylten på din enhet …');
+    const worker=await Tesseract.createWorker('eng',1,{
+      logger:(m)=>{if(m.status==='recognizing text'&&m.progress!=null)setOCRStatus(`Läser av … ${Math.round(m.progress*100)} %`);}
+    });
+    try {
+      await worker.setParameters({tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',tessedit_pageseg_mode:'7',preserve_interword_spaces:'0'});
+      const img=cropImage();
+      const first=await worker.recognize(img.toDataURL('image/png'));
+      let plate=extractPlate(first.data.text);
+      if(!plate){
+        setOCRStatus('Försöker förbättra bildkontrasten …');
+        const second=await worker.recognize(enhanceImage(img).toDataURL('image/png'));
+        plate=extractPlate(second.data.text);
+      }
+      if(plate){
+        updateReg(plate);
+        setOCRStatus(`Vi läste ${formatPlate(plate)}. Kontrollera numret innan du fortsätter.`);
+        notify(`Hittade ${formatPlate(plate)} – kontrollera att det stämmer.`);
+        regInput.scrollIntoView({behavior:'smooth',block:'center'});
+      } else {
+        setOCRStatus('Kunde inte läsa skylten säkert. Justera den gröna rutan, ta en ny bild eller skriv numret manuellt.');
+      }
+    } finally {await worker.terminate();}
+  } catch(e){
+    console.warn('BilKollen OCR error',e);
+    setOCRStatus('OCR kunde inte starta. Kontrollera internetanslutningen, eller skriv registreringsnumret manuellt.');
+  } finally {processing=false;btn.disabled=false;}
+});
+
+// Enables an app icon on mobile. Manual entry works without internet after initial caching.
+if (false && 'serviceWorker' in navigator && location.protocol==='https:') {
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+}
+
+</script>
+</body>
+</html>
