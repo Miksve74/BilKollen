@@ -212,7 +212,7 @@ footer strong {color:#2b675c;}
 <script>
 'use strict';
 
-// BilKollen 1.1 – multi-pass OCR – no vehicle data collection, no scraping, no backend.
+// BilKollen 1.2 – multi-region OCR – no vehicle data collection, no scraping, no backend.
 // OCR runs in the browser with Tesseract.js (fetched on first use).
 const $ = (id) => document.getElementById(id);
 const cameraInput = $('cameraInput');
@@ -429,29 +429,45 @@ $('readBtn').addEventListener('click',async()=>{
     try {
       await worker.setParameters({tessedit_char_whitelist:'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',tessedit_pageseg_mode:'7',preserve_interword_spaces:'0',user_defined_dpi:'300'});
       const img=cropImage();
-      const tight=insetCrop(img);
-      const attempts=[
-        {image:tight,psm:'7',label:'Läser skylten'},
-        {image:enhanceImage(tight),psm:'7',label:'Förbättrar kontrasten'},
-        {image:enhanceImage(tight,'threshold'),psm:'7',label:'Testar svartvit avläsning'},
-        {image:img,psm:'11',label:'Söker text i hela rutan'},
-        {image:enhanceImage(img),psm:'6',label:'Testar alternativ läsning'}
+      // Never discard the upper quarter by default: a tilted plate may sit there.
+      const regions=[
+        {image:insetCrop(img,.03,.04,.03,.06),name:'Nästan hela skyltrutan'},
+        {image:insetCrop(img,.04,.02,.04,.30),name:'Övre delen'},
+        {image:insetCrop(img,.04,.15,.04,.12),name:'Mitten'},
+        {image:img,name:'Hela skyltrutan'}
       ];
-      let plate=null;
-      for(const attempt of attempts){
-        setOCRStatus(attempt.label+' …');
-        await worker.setParameters({tessedit_pageseg_mode:attempt.psm});
-        const result=await worker.recognize(attempt.image);
-        plate=extractPlate(result.data.text);
-        if(plate)break;
+      const votes=new Map();
+      for(const region of regions){
+        for(const mode of ['normal','contrast']){
+          setOCRStatus('Läser '+region.name.toLowerCase()+' …');
+          await worker.setParameters({tessedit_pageseg_mode:'7'});
+          const picture=mode==='normal'?region.image:enhanceImage(region.image);
+          const result=await worker.recognize(picture);
+          const found=extractPlate(result.data.text);
+          if(found){
+            const prior=votes.get(found)||{count:0,regions:new Set(),confidence:0};
+            prior.count++;
+            prior.regions.add(region.name);
+            prior.confidence=Math.max(prior.confidence,result.data.confidence||0);
+            votes.set(found,prior);
+          }
+        }
       }
-      if(plate){
-        updateReg(plate);
-        setOCRStatus(`Vi läste ${formatPlate(plate)}. Kontrollera numret innan du fortsätter.`);
-        notify(`Hittade ${formatPlate(plate)} – kontrollera att det stämmer.`);
+      const sorted=[...votes.entries()].sort((a,b)=>
+        b[1].regions.size-a[1].regions.size || b[1].count-a[1].count || b[1].confidence-a[1].confidence);
+      const best=sorted[0];
+      const agreed=best && best[1].regions.size>=2 &&
+        best[1].count>=3 && best[1].confidence>=55 &&
+        (!sorted[1] || sorted[1][1].count<best[1].count);
+      if(agreed){
+        updateReg(best[0]);
+        setOCRStatus(`Förslag: ${formatPlate(best[0])}. Kontrollera alltid att skylten stämmer innan du fortsätter.`);
+        notify(`OCR föreslår ${formatPlate(best[0])} – kontrollera noga.`);
         regInput.scrollIntoView({behavior:'smooth',block:'center'});
-      } else {
-        setOCRStatus('Kunde inte läsa skylten säkert. Justera den gröna rutan, ta en ny bild eller skriv numret manuellt.');
+      }else{
+        // Clear any stale OCR result. Ambiguous recognition must never silently select a plate.
+        updateReg('');
+        setOCRStatus('Osäker avläsning. OCR fick inte samma nummer från flera bildutsnitt. Flytta rutan närmare bokstäverna eller skriv numret manuellt.');
       }
     } finally {await worker.terminate();}
   } catch(e){
